@@ -1,0 +1,11 @@
+.colorTituloPrincipal {
+    color:black;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+}
+
+.textoFooter {
+    color: white;
+    font-size: 12px;
+    text-transform: uppercase;
+}
