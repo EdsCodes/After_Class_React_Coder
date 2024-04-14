@@ -15,20 +15,20 @@ const NavBar = () => {
                     <CartWidget />
                 </div>
             </div>
-            <div className="row">
+            <div className="row my-3">
                 <div className="col">
                     <ul className="nav justify-content-center">
                         <li className="nav-item">
-                            <a className="nav-link text-dark" href="#">Home</a>
+                            <a className="nav-link text-secondary text-uppercase textoNavbar" href="#">Home</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link text-dark" href="#">Ropa</a>
+                            <a className="nav-link text-secondary text-uppercase textoNavbar" href="#">Ropa</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link text-dark" href="#">Mate</a>
+                            <a className="nav-link text-secondary text-uppercase textoNavbar" href="#">Mate</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link text-dark" href="#">Café y Té</a>
+                            <a className="nav-link text-secondary text-uppercase textoNavbar" href="#">Café y Té</a>
                         </li>
                     </ul>
                 </div>

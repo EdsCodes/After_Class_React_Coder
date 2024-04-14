@@ -4,6 +4,10 @@
     word-spacing: 2px;
 }
 
+.textoNavbar {
+    font-size: 12px;
+}
+
 .textoFooter {
     color: white;
     font-size: 12px;
