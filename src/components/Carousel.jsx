@@ -1,18 +1,18 @@
 const Carousel = () => {
     return (
-        <div className="container-fluid bg-dark">
+        <div className="container">
             <div className="row">
                 <div className="col">
                     <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
                         <div className="carousel-inner">
                             <div className="carousel-item active" data-bs-interval="3000">
-                                <img src="images/1-slide.png" className="d-block w-100" alt="..." />
+                                <img src="images/01-slide.png" className="d-block w-100" alt="..." />
                             </div>
                             <div className="carousel-item" data-bs-interval="3000">
-                                <img src="images/2-slide.webp" className="d-block w-100" alt="..." />
+                                <img src="images/02-slide.png" className="d-block w-100" alt="..." />
                             </div>
                             <div className="carousel-item" data-bs-interval="3000">
-                                <img src="images/3-slide.webp" className="d-block w-100" alt="..." />
+                                <img src="images/03-slide.png" className="d-block w-100" alt="..." />
                             </div>
                         </div>
                         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
