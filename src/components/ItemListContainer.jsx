@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import arrayProductos from "./json/productos.json";
 import ItemList from "./ItemList";
+import Carousel from "./Carousel";
 
 const ItemListContainer = () => {
     const [items, setItems] = useState([]);
@@ -20,11 +21,14 @@ const ItemListContainer = () => {
     }, [id])
 
     return (
-        <div className="container">
-            <div className="row my-5">
-                <ItemList items={items} />
+        <>
+            {id ? "" : <Carousel />}
+            <div className="container">
+                <div className="row my-5">
+                    <ItemList items={items} />
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
