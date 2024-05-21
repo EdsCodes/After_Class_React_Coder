@@ -1,17 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "./context/CartContext";
-import { addDoc, collection, doc, getDocs, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { Link } from "react-router-dom";
 
 const Checkout = () => {
-    const {cart, getCountProducts, getSumProducts} = useContext(CartContext);
+    const {cart, clear, getCountProducts, getSumProducts} = useContext(CartContext);
     const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
-    const [telephone, setTelephone] = useState("");
+    const [telefono, setTelefono] = useState("");
     const [orderId, setOrderId] = useState("");
 
     const generarOrden = () => {
-        const buyer = {nombre:nombre, email:email, telephone:telephone};
+        if (nombre == "") {
+            return false;
+        } else if (email == "") {
+            return false;
+        } else if (telefono == "") {
+            return false;
+        }
+
+        const buyer = {nombre:nombre, email:email, telephone:telefono};
         const items = cart.map(item => ({id:item.id, title:item.nombre, price:item.precio}));
         const date = new Date();
         const currentDate = `${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
@@ -22,10 +30,14 @@ const Checkout = () => {
         const ordersCollection = collection(db, "orders");
         addDoc(ordersCollection, order).then(data => {
             setOrderId(data.id);
+            setNombre("");
+            setEmail("");
+            setTelefono("");
+            clear();
         });
     }
 
-    if (getCountProducts() == 0) {
+    if (getCountProducts() == 0 && !orderId) {
         return (
             <div className="container my-5">
                 <div className="row">
@@ -40,6 +52,7 @@ const Checkout = () => {
 
     return (
         <div className="container my-5">
+            {!orderId ? 
             <div className="row">
                 <div className="col">
                     <form>
@@ -52,8 +65,8 @@ const Checkout = () => {
                             <input type="text" className="form-control" onInput={(e) => {setEmail(e.target.value)}} />
                         </div>
                         <div className="mb-3">
-                            <label className="form-label">Telephone</label>
-                            <input type="text" className="form-control" onInput={(e) => {setTelephone(e.target.value)}} />
+                            <label className="form-label">Teléfono</label>
+                            <input type="text" className="form-control" onInput={(e) => {setTelefono(e.target.value)}} />
                         </div>
                         
                         <button type="button" className="btn text-white bg-black" onClick={generarOrden}>Generar Orden</button>
@@ -77,7 +90,7 @@ const Checkout = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> : "" }
             <div className="row my-5">
                 <div className="col text-center">
                     {orderId ? <div className="alert alert-light" role="alert">Felicitaciones! Tu ID de Compra es: <b>{orderId}</b></div> : ""}
